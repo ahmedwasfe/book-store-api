@@ -39,6 +39,7 @@ router.post(
 
         const result = await user.save();
         const token = user.generateToken();
+        // ignore password field from response and get all other fields
         const { password, ...other } = result._doc;
         response.status(201).json({ message: 'Register user successfully', user: other, token: token });
     }));
